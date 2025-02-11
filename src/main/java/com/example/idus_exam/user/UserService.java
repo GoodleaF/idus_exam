@@ -29,7 +29,8 @@ public class UserService implements UserDetailsService{
 
     @Transactional
     public void signup(UserDto.UserSignup dto){
-        User user = userRepository.save(dto.toEntity());
+        String encodedPassword = passwordEncoder.encode(dto.getPassword());
+        User user = userRepository.save(dto.toEntity(encodedPassword));
 
         emailVerifyService.signup(user.getIdx(), user.getEmail());
     }
