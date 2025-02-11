@@ -27,6 +27,16 @@ public class UserController {
         return ResponseEntity.ok("이메일 인증을 완료해주세요");
     }
 
+    @GetMapping("/verify")
+    public ResponseEntity<String> verifyEmail(@RequestParam("uuid") String uuid) {
+        try {
+            userService.verify(uuid);
+            return ResponseEntity.ok("Email verified successfully! Your account is now active.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Verification failed: " + e.getMessage());
+        }
+    }
+
     @GetMapping("/orders")
     public List<Order> getUserOrders(@AuthenticationPrincipal User user) {
         return orderRepository.findByUser(user);
