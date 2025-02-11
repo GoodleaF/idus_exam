@@ -24,7 +24,6 @@ public class JwtUtil {
                     .idx(claims.get("userIdx", Long.class))
                     .email(claims.get("userEmail", String.class))
                     .nickname(claims.get("userNickname", String.class))
-                    .phone(claims.get("userPhone", int.class))
                     .build();
 
         } catch (ExpiredJwtException e) {
