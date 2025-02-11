@@ -1,6 +1,6 @@
 package com.example.idus_exam.user.model;
 
-import com.example.idus_exam.order.Order;
+import com.example.idus_exam.order.model.Order;
 import lombok.*;
 
 import java.util.List;
@@ -15,11 +15,11 @@ public class UserDto {
         private int phone;
         private String sex = null;
 
-        public User toEntity(){
+        public User toEntity(String encodedPassword) {
             return User.builder()
                     .username(username)
                     .nickname(nickname)
-                    .password(password)
+                    .password(encodedPassword)
                     .email(email)
                     .phone(phone)
                     .sex(sex)
@@ -28,7 +28,7 @@ public class UserDto {
     }
 
     @Data
-    public class LoginRequest {
+    public static class LoginRequest {
         private String email;
         private String password;
     }
@@ -58,5 +58,19 @@ public class UserDto {
                     .sex(user.getSex())
                     .build();
         }
+    }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class UserListResponse {
+        private Long idx;
+        private String username;
+        private String nickname;
+        private String email;
+        private int phone;
+        private String sex;
+        private Order lastOrder;
     }
 }

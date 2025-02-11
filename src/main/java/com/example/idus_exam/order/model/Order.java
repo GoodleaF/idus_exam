@@ -1,4 +1,4 @@
-package com.example.idus_exam.order;
+package com.example.idus_exam.order.model;
 
 import com.example.idus_exam.user.model.User;
 import jakarta.persistence.*;
@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Entity
+@Table(name = "orders")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

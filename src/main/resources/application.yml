@@ -1,15 +1,29 @@
 spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
+          timeout: 5000
+
   datasource:
     master:
-      jdbc-url: jdbc:mariadb://192.0.2.115:3306/def
+      jdbc-url: ${MASTER_JDBC_URL}
       driver-class-name: org.mariadb.jdbc.Driver
-      username: kjy
-      password: qwer1234
+      username: ${MASTER_DB_USERNAME}
+      password: ${MASTER_DB_PASSWORD}
     slave:
-      jdbc-url: jdbc:mariadb://192.0.2.116:3306/def
+      jdbc-url: ${SLAVE_JDBC_URL}
       driver-class-name: org.mariadb.jdbc.Driver
-      username: slavekjy
-      password: qwer1234
+      username: ${SLAVE_DB_USERNAME}
+      password: ${SLAVE_DB_PASSWORD}
 
   jpa:
     database-platform: org.hibernate.dialect.MariaDBDialect
