@@ -28,7 +28,7 @@ public class UserDto {
     }
 
     @Data
-    public class LoginRequest {
+    public static class LoginRequest {
         private String email;
         private String password;
     }
