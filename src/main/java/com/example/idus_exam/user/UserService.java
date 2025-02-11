@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +27,7 @@ public class UserService implements UserDetailsService{
     private final EmailVerifyService emailVerifyService;
     private final PasswordEncoder passwordEncoder;
 
+    @Transactional
     public void signup(UserDto.UserSignup dto){
         User user = userRepository.save(dto.toEntity());
 
@@ -33,6 +35,7 @@ public class UserService implements UserDetailsService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> result = userRepository.findByEmail(email);
 
@@ -43,6 +46,7 @@ public class UserService implements UserDetailsService{
         return null;
     }
 
+    @Transactional
     public void verify(String uuid) {
         User user = emailVerifyService.verify(uuid);
         if(user != null) {
@@ -51,6 +55,7 @@ public class UserService implements UserDetailsService{
         }
     }
 
+    @Transactional
     public Page<UserDto.UserListResponse> getUserListWithLastOrder(String username, String email, Pageable pageable) {
         Page<User> userPage = userRepository.findByUsernameContainingAndEmailContaining(username, email, pageable);
         List<UserDto.UserListResponse> listResponses = userPage.getContent().stream().map(user -> {

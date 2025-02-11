@@ -10,10 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +20,12 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final OrderRepository orderRepository;
+
+    @PostMapping("/signup")
+    public ResponseEntity<String> signup(@RequestBody UserDto.UserSignup dto) {
+        userService.signup(dto);
+        return ResponseEntity.ok("이메일 인증을 완료해주세요");
+    }
 
     @GetMapping("/orders")
     public List<Order> getUserOrders(@AuthenticationPrincipal User user) {
