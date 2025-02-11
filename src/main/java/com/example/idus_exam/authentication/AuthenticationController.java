@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserDto.LoginRequest loginRequest) {
-        UsernamePasswordAuthenticationToken token =
-                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
-        Authentication authentication = authenticationManager.authenticate(token);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return ResponseEntity.ok("Login successful");
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<String> login(@RequestBody UserDto.LoginRequest loginRequest) {
+//        UsernamePasswordAuthenticationToken token =
+//                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
+//        Authentication authentication = authenticationManager.authenticate(token);
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        return ResponseEntity.ok("Login successful");
+//    }
 
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
