@@ -1,6 +1,6 @@
 package com.example.idus_exam.user.model;
 
-import com.example.idus_exam.order.Order;
+import com.example.idus_exam.order.model.Order;
 import lombok.*;
 
 import java.util.List;

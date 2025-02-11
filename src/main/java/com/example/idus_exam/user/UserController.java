@@ -1,6 +1,6 @@
 package com.example.idus_exam.user;
 
-import com.example.idus_exam.order.Order;
+import com.example.idus_exam.order.model.Order;
 import com.example.idus_exam.order.OrderRepository;
 import com.example.idus_exam.user.model.User;
 import com.example.idus_exam.user.model.UserDto;
