@@ -59,4 +59,18 @@ public class UserDto {
                     .build();
         }
     }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class UserListResponse {
+        private Long idx;
+        private String username;
+        private String nickname;
+        private String email;
+        private int phone;
+        private String sex;
+        private Order lastOrder;
+    }
 }
