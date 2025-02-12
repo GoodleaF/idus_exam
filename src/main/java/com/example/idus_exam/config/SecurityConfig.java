@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         .requestMatchers("/user/signup", "/user/verify").permitAll()
                         .anyRequest().authenticated());
 
