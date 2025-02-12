@@ -1,6 +1,7 @@
 package com.example.idus_exam.user.model;
 
 import com.example.idus_exam.order.model.Order;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@Tag(name="회원 기능")
 @Entity
 @Getter
 @NoArgsConstructor
@@ -26,7 +28,7 @@ public class User implements UserDetails {
     private String nickname;
     private String password;
     private String email;
-    private int phone;
+    private String phone;
     private String sex;
     private boolean enabled;
 

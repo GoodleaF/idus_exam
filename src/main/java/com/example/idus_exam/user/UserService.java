@@ -56,7 +56,7 @@ public class UserService implements UserDetailsService{
         }
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<UserDto.UserListResponse> getUserListWithLastOrder(String username, String email, Pageable pageable) {
         Page<User> userPage = userRepository.findByUsernameContainingAndEmailContaining(username, email, pageable);
         List<UserDto.UserListResponse> listResponses = userPage.getContent().stream().map(user -> {
