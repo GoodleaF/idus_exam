@@ -3,6 +3,7 @@ package com.example.idus_exam.emailverify;
 
 import com.example.idus_exam.emailverify.model.EmailVerify;
 import com.example.idus_exam.user.model.User;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,8 @@ public class EmailVerifyService {
 
         mailSender.send(message);
     }
+
+    @Transactional
     public void signup(Long idx, String email) {
         String uuid = UUID.randomUUID().toString();
 
@@ -43,6 +46,7 @@ public class EmailVerifyService {
         sendEmail(uuid, email);
     }
 
+    @Transactional(readOnly = true)
     public User verify(String uuid) {
         EmailVerify emailVerify = emailVerifyRepository.findByUuid(uuid).orElseThrow();
 
